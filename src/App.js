@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { tasks } from "./components/Overview.js";
+// import { tasks } from "./components/Overview.js";
 
 
 
@@ -15,10 +15,6 @@ function App() {
         {tasks.map((task) => (<li key={task}>{task}</li>))}
       </ul >
     )
-  }
-
-  const formSubmitted = (e) => {
-
   }
 
   function Form() {
