@@ -1,45 +1,25 @@
 import { useState } from 'react';
-// import { tasks } from "./components/Overview.js";
-
-
-
+import TodoList from "./components/TodoList";
+import Form from "./components/Form";
 
 function App() {
 
   const [tasks, setTasks] = useState(["task 1", "task 2"]);
   const [InputVal, setInputVal] = useState('dummy task');
 
-  function TodoList() {
-    return (
-      <ul id="task-list">
-        {tasks.map((task) => (<li key={task}>{task}</li>))}
-      </ul >
-    )
+  const submitted = (e) => {
+    e.preventDefault();
+    const newTask = e.target[0].value
+    e.target[0].value = ''
+    setTasks((prevTasks) => [...prevTasks, newTask])
+    setInputVal('')
   }
-
-  function Form() {
-    const submitted = (e) => {
-      e.preventDefault();
-      console.log(e)
-      setInputVal(e.target[0].value)
-      setTasks((prevTasks) => [...prevTasks, InputVal])
-    }
-
-    return (
-      <form onSubmit={submitted}>
-        <input placeholder='Read a book' />
-        <button type="submit" id="submit-btn">
-          Add new task</button>
-      </form>
-    )
-  }
-
 
   return (
     <div className="App">
       <h1>React Input and list assignment</h1>
-      <TodoList />
-      <Form />
+      <TodoList tasks={tasks} />
+      <Form onSubmit={submitted} />
     </div >
   );
 }
