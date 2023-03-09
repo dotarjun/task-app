@@ -18,36 +18,34 @@ function App() {
   }
 
   const formSubmitted = (e) => {
-    e.preventDefault();
-    console.log(e)
-    setInputVal(e.target[0].value)
-    setTasks((prevTasks) => [...prevTasks, InputVal])
+
   }
+
+  function Form() {
+    const submitted = (e) => {
+      e.preventDefault();
+      console.log(e)
+      setInputVal(e.target[0].value)
+      setTasks((prevTasks) => [...prevTasks, InputVal])
+    }
+
+    return (
+      <form onSubmit={submitted}>
+        <input placeholder='Read a book' />
+        <button type="submit" id="submit-btn">
+          Add new task</button>
+      </form>
+    )
+  }
+
 
   return (
     <div className="App">
       <h1>React Input and list assignment</h1>
       <TodoList />
-
-      <form onSubmit={formSubmitted}>
-        <input placeholder='Read a book' />
-        <button type="submit" id="submit-btn">
-          Add new task</button>
-      </form>
-
+      <Form />
     </div >
   );
-
-
-
 }
-
-
-
-// const addTodotoDOM = (input) => {
-
-// }
-
-
 
 export default App;
