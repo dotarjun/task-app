@@ -3,41 +3,38 @@ import { tasks } from "./components/Overview.js";
 
 
 
-function addTodoToDom() {
-  return (
-    <ul id="task-list">
-      {tasks.map((task) => (<li key={task}>{task}</li>))}
-    </ul >
-  )
-}
 
 function App() {
+
+  const [tasks, setTasks] = useState(["task 1", "task 2"]);
   const [InputVal, setInputVal] = useState('dummy task');
 
+  function TodoList() {
+    return (
+      <ul id="task-list">
+        {tasks.map((task) => (<li key={task}>{task}</li>))}
+      </ul >
+    )
+  }
 
   const formSubmitted = (e) => {
     e.preventDefault();
-
-  }
-
-  const setTodoVal = (e) => {
-    setInputVal(e.target.value)
-    tasks.append(InputVal)
+    console.log(e)
+    setInputVal(e.target[0].value)
+    setTasks((prevTasks) => [...prevTasks, InputVal])
   }
 
   return (
     <div className="App">
-
       <h1>React Input and list assignment</h1>
-
-      <addTodoToDom />
-
+      <TodoList />
 
       <form onSubmit={formSubmitted}>
-        <input placeholder='Read a book' onChange={setTodoVal} />
+        <input placeholder='Read a book' />
         <button type="submit" id="submit-btn">
           Add new task</button>
       </form>
+
     </div >
   );
 
