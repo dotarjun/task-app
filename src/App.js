@@ -5,14 +5,12 @@ import Form from "./components/Form";
 function App() {
 
   const [tasks, setTasks] = useState(["task 1", "task 2"]);
-  const [InputVal, setInputVal] = useState('dummy task');
 
   const submitted = (e) => {
     e.preventDefault();
     const newTask = e.target[0].value
     e.target[0].value = ''
     setTasks((prevTasks) => [...prevTasks, newTask])
-    setInputVal('')
   }
 
   return (
